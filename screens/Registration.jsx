@@ -4,61 +4,93 @@ import { useState } from "react";
 
 const Registration = () => {
     const navigation = useNavigation();
-    const [enable , setEnable] = useState(true);
-    const [text, setText] = useState()
+    const [enableSwitch , setEnableSwitch] = useState(false);
+    // const [text, setText] = useState()
+    const [fullName, setFullName] = useState('');
+    const [bloodGroup, setBloodGroup] = useState('');
+    const [address, setAddress] = useState('');
+    const [birthYear, setBirthYear] = useState('');
 
-    const Toggle = () =>{
-        if(enable){
-            setEnable(inActive)
-        }else{
-            setText(Active);
-        }
-        // setEnable(previouseState => !previouseState)
+
+    const HandleInput = (text) =>{
+        setFullName(text);
     }
 
-    //
-    const HangleInput = (text) =>{
-        console.log(text)
+    const HandleBloodGroup = (text) =>{
+        setBloodGroup(text);
+    }
+
+    const HandleAddress = (text) =>{
+        setAddress(text);
+    }
+
+    const HandleBirthYear = (text) =>{
+        setBirthYear(text);
+    }
+
+
+    // submitButton
+    const SubmitButton = () =>{
+        navigation.navigate('Home');
+
+        console.log(fullName);
+        console.log(bloodGroup);
+        console.log(address);
+        console.log(birthYear);
+
+
 
     }
+
+    const ToggleSwitch = () =>{
+        setEnableSwitch(previousState => !previousState)
+
+    }
+
+    
     return(
         <ScrollView>
             <View style={style.header}>
-                <Text style={style.moreInfo}>More Informations</Text>
+                <Text style={style.moreInfo}>More Information</Text>
                 <Text style={{marginBottom: 20}}>Enter the code sent to the phone number you provided.</Text>
             </View>
             {/* Name */}
             <View style={{marginLeft: 20,}}>
             <View>
                 <Text style={{marginBottom: 5}}>Full Name</Text>
-                <TextInput placeholder="Enter first and Last Name" style={style.input}/>
+                <TextInput placeholder="Enter first and Last Name" style={style.input} value={fullName} onChangeText={HandleInput}/>
             </View>
             {/*BloodGroup  */}
             <View>
                 <Text style={{marginBottom: 5}}>Blood Group</Text>
-                <TextInput placeholder="Enter Blood Type" style={style.input}/>
+                <TextInput placeholder="Enter Blood Type" style={style.input} value={bloodGroup} onChangeText={HandleBloodGroup} />
             </View>
             {/* Address */}
             <View>
                 <Text style={{marginBottom: 5}}>Address</Text>
-                <TextInput placeholder="Enter Address" style={style.input}/>
+                <TextInput placeholder="Enter Address" style={style.input} value={address}  onChangeText={HandleAddress}/>
             </View>
             {/* DOB */}
             <View>
                 <Text style={{marginBottom: 5}}>Birth Year</Text>
-                <TextInput placeholder="Enter your birth year" style={style.input} onChangeText={HangleInput}/>
+                <TextInput placeholder="Enter your birth year" style={style.input} value={birthYear} onChangeText={HandleBirthYear}/>
             </View>
 
             {/* available to donate switch */}
             <View>
                 <Text style={{fontWeight: '600'}}>Available to Donate</Text>
-                <Switch onValueChange={Toggle} value={enable} trackColor={{ false: 'grey', true: 'red'}} style={{alignSelf: 'flex-start'}}/>
+                <Switch style={{alignSelf: 'flex-start'}}
+                 trackColor={{false: 'grey', true: 'red'}}
+                 thumbColor={enableSwitch ? 'white' : 'white'}
+                 onValueChange={ToggleSwitch}
+                 value={enableSwitch}
+                 />
             </View>
             </View>
 
             {/* button */}
-            <TouchableOpacity style={style.button} onPress={() => navigation.navigate('Home')}>
-                <Text style={{color: 'white', fontWeight: 'bold', paddingLeft: 7}}>Complete</Text>
+            <TouchableOpacity style={style.button} onPress={SubmitButton}>
+                <Text style={{color: 'white', fontWeight: 'bold', paddingLeft: 25}}>Complete</Text>
             </TouchableOpacity>
         </ScrollView>
         
@@ -73,7 +105,7 @@ const style = StyleSheet.create({
     },
     input:{
         borderWidth: 0.2,
-        padding: 12,
+        padding: 11,
         borderRadius: 5,
         marginBottom: 20,
         width: '95%'
@@ -84,12 +116,13 @@ const style = StyleSheet.create({
         alignSelf: 'center',
         borderRadius: 7,
         marginTop: 40,
-        marginBottom: 20
+        marginBottom: 20,
+        width: '45%'
     },
     moreInfo:{
         fontWeight: 'bold', 
         fontSize: 20,
-         marginBottom: 20
+         marginBottom: 10
 
     }
 })
