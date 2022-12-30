@@ -1,46 +1,34 @@
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, ScrollView , Switch} from "react-native";
 import { useNavigation } from '@react-navigation/native'
 import { useState } from "react";
+import Button from "../components/Button";
+
 
 const Registration = () => {
     const navigation = useNavigation();
     const [enableSwitch , setEnableSwitch] = useState(false);
-    // const [text, setText] = useState()
-    const [fullName, setFullName] = useState('');
-    const [bloodGroup, setBloodGroup] = useState('');
-    const [address, setAddress] = useState('');
-    const [birthYear, setBirthYear] = useState('');
 
 
-    const HandleInput = (text) =>{
-        setFullName(text);
+    const [RegistrationInfor, setRegistrationInfor] = useState({
+        FullName: '',
+        BloodGroup: '',
+        Address: '',
+        BirthYear: '',
+
+    })
+
+    const HandleInput = (text) => {
+        setRegistrationInfor(text)
     }
 
-    const HandleBloodGroup = (text) =>{
-        setBloodGroup(text);
-    }
-
-    const HandleAddress = (text) =>{
-        setAddress(text);
-    }
-
-    const HandleBirthYear = (text) =>{
-        setBirthYear(text);
-    }
-
-
-    // submitButton
-    const SubmitButton = () =>{
+    // Button Handler
+    const ButtonHandler = () =>{
         navigation.navigate('Home');
-
-        console.log(fullName);
-        console.log(bloodGroup);
-        console.log(address);
-        console.log(birthYear);
-
-
-
     }
+
+//  Tittle = 'sunbit';
+
+ 
 
     const ToggleSwitch = () =>{
         setEnableSwitch(previousState => !previousState)
@@ -58,22 +46,22 @@ const Registration = () => {
             <View style={{marginLeft: 20,}}>
             <View>
                 <Text style={{marginBottom: 5}}>Full Name</Text>
-                <TextInput placeholder="Enter first and Last Name" style={style.input} value={fullName} onChangeText={HandleInput}/>
+                <TextInput placeholder="Enter first and Last Name" style={style.input}/>
             </View>
             {/*BloodGroup  */}
             <View>
                 <Text style={{marginBottom: 5}}>Blood Group</Text>
-                <TextInput placeholder="Enter Blood Type" style={style.input} value={bloodGroup} onChangeText={HandleBloodGroup} />
+                <TextInput placeholder="Enter Blood Type" style={style.input}/>
             </View>
             {/* Address */}
             <View>
                 <Text style={{marginBottom: 5}}>Address</Text>
-                <TextInput placeholder="Enter Address" style={style.input} value={address}  onChangeText={HandleAddress}/>
+                <TextInput placeholder="Enter Address" style={style.input}/>
             </View>
             {/* DOB */}
             <View>
                 <Text style={{marginBottom: 5}}>Birth Year</Text>
-                <TextInput placeholder="Enter your birth year" style={style.input} value={birthYear} onChangeText={HandleBirthYear}/>
+                <TextInput placeholder="Enter your birth year" style={style.input}/>
             </View>
 
             {/* available to donate switch */}
@@ -88,10 +76,8 @@ const Registration = () => {
             </View>
             </View>
 
-            {/* button */}
-            <TouchableOpacity style={style.button} onPress={SubmitButton}>
-                <Text style={{color: 'white', fontWeight: 'bold', paddingLeft: 25}}>Complete</Text>
-            </TouchableOpacity>
+        {/* button */}
+            <Button ButtonHandler={ButtonHandler}/>
         </ScrollView>
         
     )
@@ -110,15 +96,6 @@ const style = StyleSheet.create({
         marginBottom: 20,
         width: '95%'
     }, 
-    button:{
-        backgroundColor: '#F63634',
-        padding: 17,
-        alignSelf: 'center',
-        borderRadius: 7,
-        marginTop: 40,
-        marginBottom: 20,
-        width: '45%'
-    },
     moreInfo:{
         fontWeight: 'bold', 
         fontSize: 20,
