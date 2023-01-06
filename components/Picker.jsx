@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { Picker } from '@react-native-picker/picker';
 import { TextInput, View, StyleSheet, Text,TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Button from '../components/Button';
 
 export default function LangPicker() {
 
@@ -43,9 +44,10 @@ export default function LangPicker() {
         <TextInput placeholder="Phone number" style={{borderBottomWidth: 1, padding: 5}}/>
     </View>
     {/* button */}
-    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Registration') }>
+    <Button/>
+    {/* <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Registration') }>
         <Text style={{color: 'white', fontWeight: '900', paddingLeft: 7}}>Next</Text>
-    </TouchableOpacity>
+    </TouchableOpacity> */}
     </>
 
     )

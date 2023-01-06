@@ -8,7 +8,7 @@ function Button({Tittle, ButtonHandler}) {
         return(
             <>
             <TouchableOpacity style={styles.button} onPress={ButtonHandler}>
-                <Text style={{color: 'white', fontWeight: 'bold', paddingLeft: 25}}>{Tittle}</Text>
+                <Text style={{color: 'white', fontWeight: 'bold',textAlign:"center"}}>Next</Text>
             </TouchableOpacity>
             </>
         )
@@ -20,7 +20,7 @@ function Button({Tittle, ButtonHandler}) {
             padding: 17,
             alignSelf: 'center',
             borderRadius: 7,
-            marginTop: 40,
+            marginTop: '40%',
             marginBottom: 20,
             width: '45%'
         },
